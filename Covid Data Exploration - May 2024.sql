@@ -39,17 +39,17 @@ ORDER BY max_death_count DESC
 ;
 
 -- Countries with Highest Death Count Percentage
-SELECT Location, Population, MAX(CAST(total_cases AS UNSIGNED)) AS max_infection_count, MAX(CAST(total_deaths AS UNSIGNED)) AS max_death_count, MAX(CAST(total_deaths AS UNSIGNED)/total_cases)*100 AS max_death_per_case_percent
+SELECT Location, Population, MAX(CAST(total_cases AS UNSIGNED)) AS total_infection_count, MAX(CAST(total_deaths AS UNSIGNED)) AS total_death_count, MAX(CAST(total_deaths AS UNSIGNED))/MAX(CAST(total_cases AS UNSIGNED))*100 AS total_death_per_case_percent
 FROM covidproject.coviddeaths
 WHERE Continent != ''
 GROUP BY Location, Population
-ORDER BY max_death_per_case_percent DESC
+ORDER BY total_death_per_case_percent DESC
 ;
 
 -- Max Death Count for Continents
 SELECT location, MAX(CAST(total_deaths AS UNSIGNED)) AS max_death_count
 FROM covidproject.coviddeaths
-WHERE Continent = '' AND Location NOT LIKE '%income'
+WHERE Continent = '' AND Location NOT LIKE '%income' AND Location not in ('World', 'European Union')
 GROUP BY location
 ORDER BY max_death_count DESC
 ;
@@ -64,9 +64,9 @@ LIMIT 1, 226
 ;
 
 -- World Value for Cases to Death Ratio
-SELECT SUM(new_cases) AS Daily_total_cases, SUM(new_deaths) AS Daily_total_deaths, SUM(new_deaths)/SUM(new_cases)*100 AS Daily_death_percentage
+SELECT SUM(new_cases) AS total_cases, SUM(new_deaths) AS total_deaths, SUM(new_deaths)/SUM(new_cases)*100 AS death_percentage
 FROM covidproject.coviddeaths
-WHERE Continent != '' AND MOD(DATEDIFF(DATE, '2020-01-05'),7) = 0
+WHERE Continent != ''
 -- GROUP BY Date
 ORDER BY 1,2
 ;
