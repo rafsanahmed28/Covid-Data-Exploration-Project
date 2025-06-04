@@ -4,7 +4,7 @@
 
 📈 Performed exploratory data analysis on Covid-19 data to find the damage caused by the pandemic in different countries. 
 
-🦠 The project includes data cleaning, transformation, and visualization to provide insights into the impact of Covid-19 globally.
+🦠 The project focuses on data transformation, exploratory data analysis and visualization to provide insights into the impact of Covid-19 globally.
 
 📊 I also developed a [Tableau dashboard](https://public.tableau.com/app/profile/rafsan.ahmed8668/viz/CovidDataVisualizationDashboard-May2024/Dashboard1) to visualize Covid-19 infection data across all the countries around the world. The dashboard gives an overview of the global death count, continental death count, and a filtered view of percentage population infected by country.
 
